@@ -1,0 +1,12 @@
+server:
+  port: 5004
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          default-label: config-server
+          uri: https://github.com/jfabiant/microservicios-tutorial-1
+          search-paths: config-data
+  application:
+    name: config-service
