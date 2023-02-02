@@ -11,14 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.userservice.domains.Car;
 
-@FeignClient(name = "car-service", url = "http://localhost:5002")
-@RequestMapping("/cars")
+@FeignClient(name = "car-service", url = "http://localhost:5002", path = "/cars")
 public interface CarFeignClient {
 	
 	@PostMapping("/")
 	Car save(@RequestBody Car car);
 	
 	@GetMapping("/users/{userId}")
-	List<Car> carList(@PathVariable Long userId);
+	List<Car> carList(@PathVariable("userId") Long userId);
 	
 }

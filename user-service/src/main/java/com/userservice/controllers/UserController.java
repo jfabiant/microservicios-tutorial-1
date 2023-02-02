@@ -3,7 +3,6 @@ package com.userservice.controllers;
 import com.userservice.domains.Car;
 import com.userservice.domains.Usuario;
 import com.userservice.services.UserService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -14,6 +14,7 @@ import java.util.List;
 
 @Service
 public class UserService {
+	
     private final RestTemplate restTemplate;
 
     private final IUserRepository userRepository;
