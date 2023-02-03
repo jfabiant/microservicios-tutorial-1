@@ -5,10 +5,8 @@ spring:
     config:
       server:
         git:
-          default-label: config-server
+          default-label: eureka
           uri: https://github.com/jfabiant/microservicios-tutorial-1
           search-paths: config-data
-          username: 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
-          password: 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
   application:
     name: config-service
