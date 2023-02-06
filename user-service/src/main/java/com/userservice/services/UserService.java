@@ -39,12 +39,12 @@ public class UserService {
         this.userRepository.save(user);
     }
     public List<Car> getCars(Long userId){
-        List<Car> cars = restTemplate.getForObject("http://localhost:5002/cars/users/"+userId,
+        List<Car> cars = restTemplate.getForObject("http://car-service/cars/users/"+userId,
                 List.class);
         return cars;
     }
     public List<Moto> getMotos(Long userId){
-        List<Moto> motos = restTemplate.getForObject("http://localhost:5003/motos/users/"+userId,
+        List<Moto> motos = restTemplate.getForObject("http://moto-service/motos/users/"+userId,
                 List.class);
         return motos;
     }
