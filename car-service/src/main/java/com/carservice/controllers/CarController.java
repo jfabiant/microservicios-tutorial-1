@@ -38,15 +38,13 @@ public class CarController {
 
     @PostMapping("/cars")
     public ResponseEntity<?> saveUser(@RequestBody Car car){
-    	System.out.println("==== PostMapping Cars ====");
-    	System.out.println(car.toString());
         this.carService.save(car);
         return ResponseEntity.ok("Carro guardado correctamente");
     }
 
     @GetMapping("/cars/users/{userId}")
     public ResponseEntity<List<Car>> getCarsByUser(@PathVariable("userId") Long userId){
-        List<Car> carList = this.carService.findByUser(userId);
+        List<Car> carList = this.carService.findByUserId(userId);
         if(carList.isEmpty()){
             return ResponseEntity.noContent().build();
         }

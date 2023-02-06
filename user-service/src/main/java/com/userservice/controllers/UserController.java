@@ -1,6 +1,7 @@
 package com.userservice.controllers;
 
 import com.userservice.domains.Car;
+import com.userservice.domains.Moto;
 import com.userservice.domains.Usuario;
 import com.userservice.services.UserService;
 
@@ -48,41 +49,51 @@ public class UserController {
     @GetMapping("/users/{userId}/cars")
     @CircuitBreaker(name = "carsCB", fallbackMethod = "fallBackGetCars")
     public ResponseEntity<?> getCars(@PathVariable Long userId){
-        return ResponseEntity.ok(this.userService.getCars(userId));
+        return ResponseEntity.ok(this.userService.getCarsRestTemplate(userId));
     }
     
     @GetMapping("/users/{userId}/motos")
     @CircuitBreaker(name = "motosCB", fallbackMethod = "fallBackGetMotos")
     public ResponseEntity<?> getMotoList(@PathVariable Long userId){
-        return ResponseEntity.ok(this.userService.getMotos(userId));
+        return ResponseEntity.ok(this.userService.getMotosRestTemplate(userId));
     }
 
-    @PostMapping("/cars/{userId}")
+    @PostMapping("/users/{userId}/cars")
     @CircuitBreaker(name = "carsCB", fallbackMethod = "fallBackSaveCar")
-    public ResponseEntity<Car> saveNewCar(@PathVariable Long userId,
+    public ResponseEntity<?> saveNewCar(@PathVariable Long userId,
     		@RequestBody Car car) {
     	return ResponseEntity.ok(this.userService.saveCar(userId, car));
     }
     
-    @GetMapping("/cars/{userId}")
-    public ResponseEntity<List<Car>> getCarListByUserId(@PathVariable Long userId){
-    	return ResponseEntity.ok(this.userService.getCarsByUserId(userId));
+    @PostMapping("/users/{userId}/motos")
+    @CircuitBreaker(name = "motosCB", fallbackMethod = "fallBackSaveMoto")
+    public ResponseEntity<?> getCarListByUserId(@PathVariable Long userId,
+    		@RequestBody Moto moto){
+    	return ResponseEntity.ok(this.userService.saveMoto(userId, moto));
     }
     
-    public ResponseEntity<?> fallBackGetCars(@PathVariable Long userId){
-    	return ResponseEntity.ok("Los carros del usuario "+userId+" se encuentran en"
-    			+ " mantenimiento, por favor espere 24hrs.");
+    
+    private ResponseEntity<?> fallBackGetCars(@PathVariable Long userId,
+    		RuntimeException ex){
+    	return ResponseEntity.ok("Los carros del usuario "+userId+""
+    			+ " se encuentran en mantenimiento, por favor espere 24 hrs.");
+    }
+    private ResponseEntity<?> fallBackGetMotos(@PathVariable Long userId,
+    		RuntimeException ex){
+    	return ResponseEntity.ok("Las motos del usuario "+userId+""
+    			+ " se encuentran en mantenimiento, por favor espere 24 hrs.");
+    }
+    private ResponseEntity<?> fallBackSaveCar(@PathVariable Long userId,
+    		@RequestBody Car car, RuntimeException ex){
+    	return ResponseEntity.ok("No se puede guardar un carro porque el usuario"
+    			+ " con id "+userId+" no tiene suficiente dinero.");
+    }
+    private ResponseEntity<?> fallBackSaveMoto(@PathVariable Long userId,
+    		@RequestBody Moto moto, RuntimeException ex){
+    	return ResponseEntity.ok("No se puede guardar una moto porque el usuario"
+    			+ " con id "+userId+" no tiene suficiente dinero.");
     }
     
-    public ResponseEntity<?> fallBackGetMotos(@PathVariable Long userId){
-    	return ResponseEntity.ok("Las motos del usuario "+userId+" se encuentran en"
-    			+ " mantenimiento, por favor espere 24hrs.");
-    }
     
-    public ResponseEntity<?> fallBackSaveCar(@PathVariable Long userId,
-    		@RequestBody Car car){
-    	return ResponseEntity.ok("No se puede guardar el carro del usuario "+userId+" "
-    			+ "porque no tiene suficiente dinero en la tarjeta registrada.");
-    }
     
 }

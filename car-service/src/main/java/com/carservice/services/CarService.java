@@ -26,12 +26,10 @@ public class CarService {
     }
 
     public Car save(Car car){
-    	System.out.println("==== Service Car ====");
-    	System.out.println(car.toString());
         return this.carRepository.save(car);
     }
 
-    public List<Car> findByUser(Long userId){
+    public List<Car> findByUserId(Long userId){
         return this.carRepository.findByUserId(userId);
     }
 

@@ -20,7 +20,7 @@ public class MotoController {
 		this.motoService = motoService;
 	}
 	@GetMapping("/motos")
-    public ResponseEntity<?> get(){
+    public ResponseEntity<?> getAllMotos(){
         List<Moto> motoList = this.motoService.getAll();
         if(motoList.isEmpty()){
             return ResponseEntity.noContent().build();
@@ -39,7 +39,7 @@ public class MotoController {
     @PostMapping("/motos")
     public ResponseEntity<?> post(@RequestBody Moto moto){
         this.motoService.save(moto);
-        return ResponseEntity.ok("Usuario guardado correctamente");
+        return ResponseEntity.ok("Moto guardado correctamente");
     }
 
     @GetMapping("/motos/users/{userId}")

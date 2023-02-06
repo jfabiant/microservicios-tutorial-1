@@ -21,6 +21,7 @@ public class Car {
     private String model;
     private String brand;
     private Long userId;
+    
 	public Long getId() {
 		return id;
 	}
