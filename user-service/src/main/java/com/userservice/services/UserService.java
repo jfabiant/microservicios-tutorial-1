@@ -45,10 +45,14 @@ public class UserService {
         this.userRepository.save(user);
     }
     
-    public List<Car> getCarsRestTemplate(Long userId){
+    /*public List<Car> getCarsRestTemplate(Long userId){
         List<Car> cars = restTemplate.getForObject("http://car-service/cars/users/"+userId,
                 List.class);
         return cars;
+    }*/
+    
+    public List<Car> getCarsRestTemplate(Long userId){
+    	return this.carFeignClient.carList(userId);
     }
     
     public List<Moto> getMotosRestTemplate(Long userId){

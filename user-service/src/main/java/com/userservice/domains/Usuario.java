@@ -18,6 +18,7 @@ public class Usuario {
     private Long id;
     private String email;
     private String password;
+    
 	public Long getId() {
 		return id;
 	}

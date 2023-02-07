@@ -10,10 +10,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Moto {
+	
     private Long id;
     private String model;
     private String brand;
     private Long userId;
+    
+	public Moto() {
+		super();
+	}
+	
+	public Moto(Long id, String model, String brand, Long userId) {
+		super();
+		this.id = id;
+		this.model = model;
+		this.brand = brand;
+		this.userId = userId;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,11 +52,10 @@ public class Moto {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+	
 	@Override
 	public String toString() {
 		return "Moto [id=" + id + ", model=" + model + ", brand=" + brand + ", userId=" + userId + "]";
 	}
-    
-    
     
 }

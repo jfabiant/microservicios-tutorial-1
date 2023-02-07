@@ -10,16 +10,22 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Car {
-    private Long id;
+	
     private String model;
     private String brand;
     private Long userId;
-	public Long getId() {
-		return id;
+    
+	public Car() {
+		super();
 	}
-	public void setId(Long id) {
-		this.id = id;
+	
+	public Car(String model, String brand, Long userId) {
+		super();
+		this.model = model;
+		this.brand = brand;
+		this.userId = userId;
 	}
+	
 	public String getModel() {
 		return model;
 	}
@@ -38,11 +44,10 @@ public class Car {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+	
 	@Override
 	public String toString() {
-		return "Car [id=" + id + ", model=" + model + ", brand=" + brand + ", userId=" + userId + "]";
+		return "Car [model=" + model + ", brand=" + brand + ", userId=" + userId + "]";
 	}
-
-    
-    
+	
 }
