@@ -38,8 +38,11 @@ public class CarController {
 
     @PostMapping("/cars")
     public ResponseEntity<?> saveUser(@RequestBody Car car){
-        this.carService.save(car);
-        return ResponseEntity.ok("Carro guardado correctamente");
+    	System.out.println("=== Car Controller ===");
+    	System.out.println("=== saveUser ===");
+    	System.out.println(car);
+        
+        return ResponseEntity.ok(this.carService.save(car));
     }
 
     @GetMapping("/cars/users/{userId}")

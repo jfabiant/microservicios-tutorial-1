@@ -75,21 +75,29 @@ public class UserController {
     
     private ResponseEntity<?> fallBackGetCars(@PathVariable Long userId,
     		RuntimeException ex){
+    	System.out.println("=== Error fallBackGetCars() ===");
+    	System.out.println(ex.getMessage());
     	return ResponseEntity.ok("Los carros del usuario "+userId+""
     			+ " se encuentran en mantenimiento, por favor espere 24 hrs.");
     }
     private ResponseEntity<?> fallBackGetMotos(@PathVariable Long userId,
     		RuntimeException ex){
+    	System.out.println("=== Error fallBackGetMotos() ===");
+    	System.out.println(ex.getMessage());
     	return ResponseEntity.ok("Las motos del usuario "+userId+""
     			+ " se encuentran en mantenimiento, por favor espere 24 hrs.");
     }
     private ResponseEntity<?> fallBackSaveCar(@PathVariable Long userId,
     		@RequestBody Car car, RuntimeException ex){
+    	System.out.println("=== Error fallBackSaveCar() ===");
+    	System.out.println(ex.getMessage());
     	return ResponseEntity.ok("No se puede guardar un carro porque el usuario"
     			+ " con id "+userId+" no tiene suficiente dinero.");
     }
     private ResponseEntity<?> fallBackSaveMoto(@PathVariable Long userId,
     		@RequestBody Moto moto, RuntimeException ex){
+    	System.out.println("=== Error fallBackSaveMoto() ===");
+    	System.out.println(ex.getMessage());
     	return ResponseEntity.ok("No se puede guardar una moto porque el usuario"
     			+ " con id "+userId+" no tiene suficiente dinero.");
     }

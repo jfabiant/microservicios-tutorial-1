@@ -37,9 +37,8 @@ public class MotoController {
     }
 
     @PostMapping("/motos")
-    public ResponseEntity<?> post(@RequestBody Moto moto){
-        this.motoService.save(moto);
-        return ResponseEntity.ok("Moto guardado correctamente");
+    public ResponseEntity<Moto> post(@RequestBody Moto moto){
+        return ResponseEntity.ok(this.motoService.save(moto));
     }
 
     @GetMapping("/motos/users/{userId}")
